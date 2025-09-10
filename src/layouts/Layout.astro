@@ -1,4 +1,7 @@
 ---
+import Analytics from '@vercel/analytics/astro'
+import  SpeedInsights  from "@vercel/speed-insights/astro"
+
 import "../styles/global.css";
 
 interface Props {
@@ -13,28 +16,14 @@ const { title } = Astro.props as Props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="no_script_icon.png" />
+		<link rel="icon" type="image/png" href="icon.png" />
 		<meta name="generator" content={Astro.generator} />
 	    <title>• { title }</title>
     </head>
-    <script>
-        (function () {
-            try {
-                const hour = new Date().getHours();
-                const isDay = hour >= 6 && hour < 18;
-                const link = document.querySelector('link[rel="icon"][type="image/png"]') || document.querySelector('link[rel="icon"]');
-
-                const image_ref = isDay ? '/day_icon.png' : '/night_icon.png';
-
-                if (link) {
-                    link.setAttribute('href', image_ref);
-                }
-            } catch (_) {
-            }
-        })();
-    </script>
 	<body>
 		<slot />
+		<Analytics />
+		<SpeedInsights />
 	</body>
 </html>
 

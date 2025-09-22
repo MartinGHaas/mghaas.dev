@@ -2,11 +2,12 @@
 import Header from "@/components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import { Button } from "@/components/ui/button";
+import GithubIcon from "../../lib/icons/GithubIcon.astro";
 ---
 
 <Layout title="mghaas.dev">
   <Header />
-  <main class="min-h-[80vh] grid px-4">
+  <main class="min-h-[80vh] px-4">
     <pre
       class="text-sm font-bold text-center ascii-wave mt-32">
                               █████                                         █████                     
@@ -22,8 +23,12 @@ import { Button } from "@/components/ui/button";
                  ░░░░░░                                                                           
   </pre>
     <div class="flex w-full justify-center">
-      <Button className="mr-5">xD</Button>
-      <Button>:O</Button>
+      <a href="https://github.com/MartinGHaas/mghaas.dev" target="_blank">
+        <Button className="mr-5">
+          <GithubIcon class="mr-2" />
+          View on Github
+        </Button>
+      </a>
     </div>
   </main>
 </Layout>

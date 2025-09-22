@@ -1,0 +1,33 @@
+---
+import { ModeToggle } from "./ModeToggle";
+import NavBar from "./NavBar";
+import { Button } from "./ui/button";
+---
+
+<header class="bg-background sticky top-0 z-50 w-full py-5 flex">
+  <a id="home-link" class="mr-2" href="/">
+    <Button variant="ghost">
+      <img src="logo.png" alt="mghaas.dev logo" class="w-9" />
+    </Button>
+  </a>
+  <NavBar client:load />
+  <div class="flex-1 flex justify-end">
+    <ModeToggle client:load />
+  </div>
+</header>
+
+<script is:inline>
+  const rickrollChance = 0.01;
+  const rickrollUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoLink = document.getElementById("home-link");
+    if (!logoLink) return;
+    logoLink.addEventListener("click", (e) => {
+      if (Math.random() < rickrollChance) {
+        e.preventDefault();
+        window.open(rickrollUrl, "_blank", "noopener,noreferrer");
+      }
+    });
+  });
+</script>

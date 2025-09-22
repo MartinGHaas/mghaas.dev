@@ -1,0 +1,12 @@
+---
+import Header from "@/components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import DevPage from "@/components/DevPage.astro";
+---
+
+<Layout title="Blog">
+  <Header />
+  <main class="min-h-[80vh]">
+    <DevPage title="Blog" description="Articles and notes are brewing here." />
+  </main>
+</Layout>

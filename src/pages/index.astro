@@ -7,9 +7,11 @@ import GithubIcon from "../../lib/icons/GithubIcon.astro";
 
 <Layout title="mghaas.dev">
   <Header />
-  <main class="min-h-[80vh] px-4">
-    <pre
-      class="text-xxs sm:text-sm font-bold text-center ascii-wave mt-32 overflow-x-auto">
+  <main class="min-h-[80vh] px-0 sm:px-4">
+    <div id="ascii-wrap" class="w-full overflow-hidden flex justify-center">
+      <pre
+        id="ascii-logo"
+        class="font-mono text-sm font-bold ascii-wave mt-24">
                               █████                                         █████                     
                          ░░███                                         ░░███                      
  █████████████    ███████ ░███████    ██████    ██████    █████      ███████   ██████  █████ █████
@@ -21,7 +23,8 @@ import GithubIcon from "../../lib/icons/GithubIcon.astro";
                  ███ ░███                                                                         
                 ░░██████                                                                          
                  ░░░░░░                                                                           
-  </pre>
+      </pre>
+    </div>
     <div class="flex w-full justify-center">
       <a href="https://github.com/MartinGHaas/mghaas.dev" target="_blank">
         <Button className="mr-5">
@@ -72,4 +75,33 @@ import GithubIcon from "../../lib/icons/GithubIcon.astro";
       background-position: 50% 50%;
     }
   }
+
+  /* Ensure the ASCII pre can be scaled to fit on mobile */
+  #ascii-logo {
+    display: inline-block;
+    transform-origin: top center;
+    will-change: transform;
+    white-space: pre;
+  }
 </style>
+
+<script is:inline>
+  // Scale the ASCII art to fit within its container width on small screens.
+  const fitAscii = () => {
+    const pre = document.getElementById('ascii-logo');
+    const wrap = document.getElementById('ascii-wrap');
+    if (!pre || !wrap) return;
+    // Reset any previous scaling to measure the natural width
+    pre.style.transform = 'none';
+    const available = wrap.clientWidth;
+    const natural = pre.scrollWidth;
+    const scale = natural > 0 ? Math.min(1, available / natural) : 1;
+    pre.style.transform = `scale(${scale})`;
+  };
+
+  // Initial fit and keep in sync on resize
+  window.addEventListener('load', fitAscii);
+  window.addEventListener('resize', fitAscii);
+  new ResizeObserver(fitAscii).observe(document.documentElement);
+  fitAscii();
+</script>

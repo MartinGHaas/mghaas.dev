@@ -8,11 +8,16 @@ export function ModeToggle() {
     const root = document.documentElement;
     const isDark = root.classList.contains("dark");
     root.classList[isDark ? "remove" : "add"]("dark");
-    // Layout.astro persists theme to localStorage via MutationObserver
   }, []);
 
   return (
-    <Button variant="outline" size="icon" onClick={handleToggle} aria-label="Toggle theme">
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handleToggle}
+      aria-label="Toggle theme"
+      className="hover:text-orange-700 dark:hover:text-orange8500"
+    >
       <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
       <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
       <span className="sr-only">Toggle theme</span>

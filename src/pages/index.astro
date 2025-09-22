@@ -1,5 +1,70 @@
 ---
+import Header from "@/components/Header.astro";
 import Layout from "../layouts/Layout.astro";
+import { Button } from "@/components/ui/button";
 ---
 
-<Layout title="mghaas.dev" />
+<Layout title="mghaas.dev">
+  <Header />
+  <main class="min-h-[80vh] grid px-4">
+    <pre
+      class="text-sm font-bold text-center ascii-wave mt-32">
+                              █████                                         █████                     
+                         ░░███                                         ░░███                      
+ █████████████    ███████ ░███████    ██████    ██████    █████      ███████   ██████  █████ █████
+░░███░░███░░███  ███░░███ ░███░░███  ░░░░░███  ░░░░░███  ███░░      ███░░███  ███░░███░░███ ░░███ 
+ ░███ ░███ ░███ ░███ ░███ ░███ ░███   ███████   ███████ ░░█████    ░███ ░███ ░███████  ░███  ░███ 
+ ░███ ░███ ░███ ░███ ░███ ░███ ░███  ███░░███  ███░░███  ░░░░███   ░███ ░███ ░███░░░   ░░███ ███  
+ █████░███ █████░░███████ ████ █████░░████████░░████████ ██████  ██░░████████░░██████   ░░█████   
+░░░░░ ░░░ ░░░░░  ░░░░░███░░░░ ░░░░░  ░░░░░░░░  ░░░░░░░░ ░░░░░░  ░░  ░░░░░░░░  ░░░░░░     ░░░░░    
+                 ███ ░███                                                                         
+                ░░██████                                                                          
+                 ░░░░░░                                                                           
+  </pre>
+    <div class="flex w-full justify-center">
+      <Button className="mr-5">xD</Button>
+      <Button>:O</Button>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  @keyframes asciiGreenWave {
+    0% {
+      /* start on the left, vertically centered */
+      background-position: 100%;
+    }
+    100% {
+      /* move to the right */
+      background-position: 0%;
+    }
+  }
+
+  .ascii-wave {
+    /* Use theme foreground as base; green band sweeps left → right */
+    --wave-base: var(--foreground);
+    --wave-accent: #34ff25;
+
+    color: transparent; /* ensure background-clip shows through in all engines */
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(
+      135deg,
+      var(--wave-base) 0%,
+      var(--wave-base) 45%,
+      var(--wave-accent) 48%,
+      var(--wave-accent) 52%,
+      var(--wave-base) 55%,
+      var(--wave-base) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 300% 100%;
+    animation: asciiGreenWave 4.5s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ascii-wave {
+      animation: none;
+      background-position: 50% 50%;
+    }
+  }
+</style>

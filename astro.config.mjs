@@ -12,7 +12,11 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss({
+      config: {
+        path: './tailwind.config.mjs'
+      }
+    })]
   },
 
   integrations: [react()]

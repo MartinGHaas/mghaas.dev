@@ -2,19 +2,32 @@
 import { ModeToggle } from "./ModeToggle";
 import NavBar from "./NavBar";
 import { Button } from "./ui/button";
+import MenuIcon from "../../lib/icons/MenuIcon.astro";
+import MobileNav from "./MobileNav.astro";
 ---
 
-<header class="bg-background sticky top-0 z-50 w-full py-5 flex">
+<header class="bg-background sticky top-0 z-50 w-full py-5 flex items-center">
   <a id="home-link" class="mr-2" href="/">
     <Button variant="ghost">
       <img src="logo.png" alt="mghaas.dev logo" class="w-9" />
     </Button>
   </a>
-  <NavBar client:load />
+
+  <div class="md:hidden">
+    <Button variant="ghost" id="mobile-menu-button">
+      <MenuIcon />
+    </Button>
+  </div>
+
+  <div class="hidden md:flex">
+    <NavBar client:load />
+  </div>
+
   <div class="flex-1 flex justify-end">
     <ModeToggle client:load />
   </div>
 </header>
+<MobileNav />
 
 <script is:inline>
   const rickrollChance = 0.01;
@@ -29,5 +42,19 @@ import { Button } from "./ui/button";
         window.open(rickrollUrl, "_blank", "noopener,noreferrer");
       }
     });
+
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenuButton = document.getElementById("close-menu-button");
+
+    if (mobileMenuButton && mobileMenu && closeMenuButton) {
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.remove("-translate-x-full");
+      });
+
+      closeMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.add("-translate-x-full");
+      });
+    }
   });
 </script>

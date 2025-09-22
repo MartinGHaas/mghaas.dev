@@ -1,0 +1,33 @@
+---
+import CloseIcon from "../../lib/icons/CloseIcon.astro";
+import { Button } from "./ui/button";
+const items: { title: string; href: string }[] = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+  },
+];
+---
+
+<div id="mobile-menu" class="fixed top-0 left-0 h-full w-full bg-background/80 backdrop-blur-sm z-50 -translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="flex justify-end p-4">
+        <Button variant="ghost" id="close-menu-button">
+            <CloseIcon />
+        </Button>
+    </div>
+    <ul class="flex flex-col items-center justify-center h-full gap-8">
+        {items.map((item) => (
+            <li>
+                <a href={item.href} class="text-2xl font-bold">{item.title}</a>
+            </li>
+        ))}
+    </ul>
+</div>
